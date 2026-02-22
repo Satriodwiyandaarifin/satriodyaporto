@@ -32,7 +32,7 @@ const projectData = {
         title: "PixelCrisp",
         desc: "Aplikasi web responsif yang dirancang untuk memanipulasi piksel gambar dan foto dengan presisi tinggi, memungkinkan pengeditan resolusi secara cepat.",
         techCount: 4,
-        images: ["images/pixelcrisp.png"], 
+        images: ["images/pixel1.png","images/pixel2.png","images/pixel3.png"], 
         features: ["Pixel Perfect Editor", "Image Quality Enhancement", "Fast Processing", "Modern UI Layout"],
         githubLink: "https://github.com/Satriodwiyandaarifin/PixelCrisp"
     },
