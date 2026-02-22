@@ -1,14 +1,14 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // =========================================================
-// 1. DATA PROJECT
+// 1. DATA PROJECT (Sudah Disesuaikan dengan Judul HTML)
 // =========================================================
 const projectData = {
     "myportofolio": {
         title: "My Portofolio",
         desc: "Website portofolio pribadi yang dirancang dengan desain responsif dan antarmuka modern menggunakan HTML, CSS, JavaScript dan GSAP Animation.",
         techCount: 5,
-        images: ["images/porto.png"], 
+        images: ["images/porto.png","images/porto2.png","images/porto3.png"], 
         features: ["Desain Responsif", "Animasi GSAP", "Dark Mode Ready", "Form Contact Active"],
         githubLink: "https://github.com/Satriodwiyandaarifin/PortofolioSatrio"
     },
@@ -16,7 +16,7 @@ const projectData = {
         title: "Navigasi Kampus",
         desc: "Website pemetaan untuk membantu mahasiswa baru menemukan letak dan rute ruangan terbaik di seluruh area kampus.",
         techCount: 7,
-        images: ["images/navi.png", "images/navi2.png"], 
+        images: ["images/navi.png", "images/navi2.png","images/navi3.png","images/navi4.png"], 
         features: ["Map Interaktif", "Search Filter", "Informasi Gedung", "Real-time Location"],
         githubLink: "https://github.com/Satriodwiyandaarifin/navigasi-kampus" 
     },
@@ -24,9 +24,34 @@ const projectData = {
         title: "ConkHD",
         desc: "Aplikasi web ringan untuk membuat gambar atau foto yang buram (low-res) menjadi kualitas HD secara instan menggunakan proses AI.",
         techCount: 4,
-        images: ["images/conkhd.png"], 
+        images: ["images/conkhd.png","images/conkhd2.png","images/conkhd3.png"], 
         features: ["AI Enhancement", "Fast Render", "Image Download", "Privacy Secure"],
         githubLink: "https://github.com/Satriodwiyandaarifin/conkHD" 
+    },
+    "pixelcrisp": {
+        title: "PixelCrisp",
+        desc: "Aplikasi web responsif yang dirancang untuk memanipulasi piksel gambar dan foto dengan presisi tinggi, memungkinkan pengeditan resolusi secara cepat.",
+        techCount: 4,
+        images: ["images/pixelcrisp.png"], 
+        features: ["Pixel Perfect Editor", "Image Quality Enhancement", "Fast Processing", "Modern UI Layout"],
+        githubLink: "https://github.com/Satriodwiyandaarifin/PixelCrisp"
+    },
+    "gearmatchairecommender": {
+        title: "GearMatch AI Recommender",
+        desc: "Sistem rekomendasi pintar berbasis web yang mengimplementasikan Machine Learning (Content-Based Filtering). Proyek ini mendemonstrasikan integrasi algoritma back-end yang kompleks ke dalam antarmuka front-end yang bersih dan responsif.",
+        techCount: 3, 
+        images: ["images/gear.png"], 
+        features: ["Content-Based Filtering ML", "TF-IDF Text Processing", "Cosine Similarity Engine", "Streamlit Interactive UI"],
+        githubLink: "#" 
+    },
+    // PERBAIKAN: Kunci data diubah agar cocok dengan judul HTML
+    "memoria-interactivecardgame": {
+        title: "Memoria - Interactive Card Game",
+        desc: "Sebuah mini-game interaktif berbasis web untuk menguji daya ingat pemain melalui mekanisme card-matching. Proyek ini dibangun sepenuhnya menggunakan Vanilla JavaScript untuk mengelola logika permainan secara real-time (pengacakan array, manajemen state kartu, perhitungan langkah, dan timer).",
+        techCount: 2, 
+        images: ["images/memory.png"], 
+        features: ["Object-Oriented Programming (OOP)", "Custom Game Loop Physics", "Accurate Collision Detection", "Custom Visual Assets Integration"],
+        githubLink: "#" 
     }
 };
 
@@ -51,32 +76,10 @@ function typeWriterEffect() {
 }
 
 // =========================================================
-// 3. FUNGSI ANIMASI SCROLL REVEAL (IN & OUT UNTUK JUDUL)
-// =========================================================
-function handleScrollReveal() {
-    const reveals = document.querySelectorAll('.reveal-text');
-    reveals.forEach(el => {
-        const revealTop = el.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        
-        // Jika elemen masuk ke layar, tambahkan class active (Animasi IN)
-        if (revealTop < windowHeight - 100) {
-            el.classList.add('active');
-        } 
-        // Jika elemen keluar dari layar (scroll ke atas), hapus class active (Animasi OUT)
-        else {
-            el.classList.remove('active');
-        }
-    });
-}
-
-// =========================================================
-// 4. MAIN LOGIC (LOADER & NAVIGASI)
+// 3. MAIN LOGIC (LOADER, NAVIGASI & DARK MODE)
 // =========================================================
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(typeWriterEffect, 1000); 
-    window.addEventListener('scroll', handleScrollReveal);
-    handleScrollReveal(); 
 
     const enterBtn = document.getElementById("enter-btn");
     const gateScreen = document.getElementById("gate-screen");
@@ -84,20 +87,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (enterBtn && gateScreen && splashScreen) {
         if (sessionStorage.getItem("hasEntered") === "true") {
-            gateScreen.style.display = "none"; splashScreen.style.display = "none";
+            gateScreen.style.display = "none"; 
+            splashScreen.style.display = "none";
             document.body.style.overflow = "auto";
             if(document.querySelector(".tab-glider")) updateGlider(); 
             initScrollAnimations(); 
         } else {
-            document.body.style.overflow = "hidden"; window.scrollTo(0, 0);
+            document.body.style.overflow = "hidden"; 
+            window.scrollTo(0, 0);
+            
             enterBtn.addEventListener("click", () => {
                 sessionStorage.setItem("hasEntered", "true");
-                gateScreen.style.opacity = "0"; setTimeout(() => gateScreen.style.display = "none", 800);
-                splashScreen.style.visibility = "visible"; splashScreen.style.opacity = "1";
-                gsap.timeline({ onComplete: () => { document.body.style.overflow = "auto"; if(document.querySelector(".tab-glider")) updateGlider(); initScrollAnimations(); } })
-                    .fromTo(".splash-logo", { opacity: 0, y: 30, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 1 })
-                    .to(".progress", { width: "100%", duration: 2.5 })
-                    .to("#splash-screen", { opacity: 0, display: "none", duration: 0.8 });
+                gateScreen.style.opacity = "0"; 
+                setTimeout(() => gateScreen.style.display = "none", 800);
+                
+                splashScreen.style.visibility = "visible"; 
+                splashScreen.style.opacity = "1";
+                
+                gsap.timeline({ onComplete: () => { 
+                    document.body.style.overflow = "auto"; 
+                    if(document.querySelector(".tab-glider")) updateGlider(); 
+                    initScrollAnimations(); 
+                }})
+                .fromTo(".splash-logo", { opacity: 0, y: 30, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 1 })
+                .to(".progress", { width: "100%", duration: 2.5 })
+                .to("#splash-screen", { opacity: 0, display: "none", duration: 0.8 });
             });
         }
     } else {
@@ -105,7 +119,6 @@ document.addEventListener("DOMContentLoaded", () => {
         initScrollAnimations();
     }
 
-    // HAMBURGER MENU
     const hamburgerBtn = document.getElementById("hamburger-btn");
     const navMenu = document.getElementById("nav-menu");
     if (hamburgerBtn && navMenu) {
@@ -114,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hamburgerBtn.querySelector("i").classList.toggle("fa-bars");
             hamburgerBtn.querySelector("i").classList.toggle("fa-times");
         });
+        
         navMenu.querySelectorAll("a").forEach(link => {
             link.addEventListener("click", () => {
                 navMenu.classList.remove("active");
@@ -122,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // DARK MODE
     const themeBtn = document.getElementById("theme-toggle");
     if (localStorage.getItem("theme") === "dark") document.body.classList.add("dark-mode");
     themeBtn?.addEventListener("click", () => {
@@ -132,41 +145,53 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =========================================================
-// 5. ANIMASI GSAP SCROLL CONTENT (EFEK IN & OUT)
+// 4. ANIMASI GSAP SCROLL CONTENT (KIRI & KANAN)
 // =========================================================
 function initScrollAnimations() {
-    // Pengaturan global scroll untuk In & Out
     const scrollConfig = (triggerEl) => ({
         trigger: triggerEl,
-        start: "top 85%", // Mulai animasi saat elemen mencapai 85% dari atas layar
-        toggleActions: "play reverse play reverse" // PLAY saat scroll turun, REVERSE saat scroll naik
+        start: "top 85%", 
+        toggleActions: "play reverse play reverse" 
     });
 
-    // Animasi Avatar About (Membesar & Muncul)
+    gsap.utils.toArray(".reveal-text").forEach(title => {
+        gsap.fromTo(title, 
+            { letterSpacing: "0px", y: 20 }, 
+            { scrollTrigger: scrollConfig(title), letterSpacing: "4px", y: 0, duration: 0.8, ease: "power3.out" }
+        );
+    });
+
     gsap.fromTo(".about-avatar", 
         { scale: 0.5, opacity: 0 }, 
         { scrollTrigger: scrollConfig(".about"), scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.5)" }
     );
 
-    // Animasi Teks About (Naik dari bawah)
     gsap.fromTo(".about-text", 
         { y: 50, opacity: 0 }, 
         { scrollTrigger: scrollConfig(".about"), y: 0, opacity: 1, duration: 0.8, delay: 0.2, ease: "power3.out" }
     );
 
-    // Animasi Timeline (Muncul berurutan dari kiri)
     gsap.fromTo(".timeline-item", 
         { x: -50, opacity: 0 }, 
         { scrollTrigger: scrollConfig(".experience"), x: 0, opacity: 1, duration: 0.6, stagger: 0.2, ease: "power3.out" }
     );
 
-    // Animasi Project Card (Muncul berurutan dari bawah)
-    gsap.fromTo(".project-card", 
-        { y: 60, opacity: 0 }, 
-        { scrollTrigger: scrollConfig(".portfolio"), y: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }
-    );
+    gsap.utils.toArray(".project-card").forEach((card, index) => {
+        let startX = index % 2 === 0 ? -100 : 100; 
 
-    // Animasi Contact Section (Teks dari Kiri, Form dari Kanan)
+        gsap.fromTo(card, 
+            { x: startX, opacity: 0 }, 
+            { 
+                scrollTrigger: scrollConfig(card), 
+                x: 0, 
+                opacity: 1, 
+                duration: 0.8, 
+                delay: index * 0.05, 
+                ease: "power3.out" 
+            }
+        );
+    });
+
     gsap.fromTo(".contact-info", 
         { x: -50, opacity: 0 }, 
         { scrollTrigger: scrollConfig(".contact"), x: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
@@ -178,7 +203,7 @@ function initScrollAnimations() {
 }
 
 // =========================================================
-// 6. TABS SYSTEM
+// 5. TABS SYSTEM
 // =========================================================
 const tabBtns = document.querySelectorAll(".tab-btn");
 const glider = document.querySelector(".tab-glider");
@@ -210,7 +235,6 @@ tabBtns.forEach(btn => {
             setTimeout(() => targetPanel.classList.add("active"), 10); 
             ScrollTrigger.refresh(); 
 
-            // Efek In untuk Tech Stack dan Sertifikat saat di-klik
             if (target === "tech") {
                 gsap.fromTo(".tech-item", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05 });
             } else if (target === "sertifikat") {
@@ -222,7 +246,7 @@ tabBtns.forEach(btn => {
 window.addEventListener("resize", updateGlider);
 
 // =========================================================
-// 7. MODAL SYSTEM
+// 6. MODAL SYSTEM
 // =========================================================
 const modal = document.getElementById("project-modal");
 let currentImageIndex = 0, currentProjectImages = []; 
@@ -238,15 +262,22 @@ function updateModalImage() {
 document.addEventListener("click", (e) => { 
     if (e.target.closest(".btn-details")) { 
         e.preventDefault(); 
+        
         let titleRaw = e.target.closest(".project-card").querySelector("h4").innerText;
-        let titleKey = titleRaw.toLowerCase().replace(/ /g, "").replace(/_/g, "");
+        // PERBAIKAN: Bersihkan spasi dan huruf kecil agar cocok dengan key projectData
+        let titleKey = titleRaw.toLowerCase().replace(/\s+/g, "").replace(/_/g, "");
         
         const data = projectData[titleKey] || projectData["myportofolio"]; 
         
         document.getElementById("modal-title").innerText = data.title;
         document.getElementById("modal-desc").innerText = data.desc;
-        document.getElementById("modal-tech-count").innerText = data.techCount;
-        document.getElementById("modal-feature-count").innerText = data.features ? data.features.length : 0;
+        document.getElementById("modal-tech-count").innerText = data.techCount || 0;
+        
+        let featureCount = 0;
+        if (data.features && Array.isArray(data.features)) {
+            featureCount = data.features.length;
+        }
+        document.getElementById("modal-feature-count").innerText = featureCount;
         
         const list = document.getElementById("modal-features-list");
         if(list) { 
@@ -302,7 +333,7 @@ document.getElementById("next-btn")?.addEventListener("click", () => {
 });
 
 // =========================================================
-// 8. PREVIEW SERTIFIKAT FULLSCREEN
+// 7. PREVIEW SERTIFIKAT FULLSCREEN
 // =========================================================
 const previewWrap = document.getElementById("cert-preview-wrap"), previewImg = document.getElementById("img-preview");
 document.addEventListener("click", (e) => {
