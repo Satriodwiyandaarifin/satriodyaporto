@@ -7,16 +7,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS khusus halaman project untuk menghilangkan garis bawah di tombol back */
+        .navbar ul li a.btn-back::after {
+            display: none;
+        }
+        .navbar ul li a.btn-back:hover {
+            opacity: 0.8;
+            color: var(--nav-text);
+        }
+    </style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">Satrio dya</div>
-        <div class="nav-right" style="display: flex; align-items: center; gap: 30px;">
+        <div class="nav-right">
             <ul>
                 <li>
-                    <a href="index.html" class="nav-link" style="display: flex; align-items: center; gap: 8px;">
+                    <a href="index.html" class="nav-link btn-back" style="display: flex; align-items: center; gap: 8px; font-weight: 600;">
                         <i class="fas fa-arrow-left"></i> Kembali ke Beranda
                     </a>
                 </li>
@@ -28,17 +38,18 @@
     </div>
 </nav>
 
-<section class="portfolio" style="padding-top: 150px; min-height: 100vh; display: flex; flex-direction: column; align-items: center;">
+<section class="portfolio" style="padding-top: 150px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding-bottom: 80px;">
     <h2 class="section-title reveal-text">Semua Proyek Saya</h2>
     <p style="color: var(--text-muted); margin-bottom: 50px; text-align: center; max-width: 600px; line-height: 1.8;">
-        Berikut adalah koleksi lengkap dari proyek-proyek desain dan pengembangan web yang pernah saya kerjakan.
+        Berikut adalah koleksi lengkap dari proyek-proyek desain, pengembangan web, hingga Machine Learning dan Game Development yang pernah saya kerjakan.
     </p>
     
     <div class="project-grid" style="width: 100%; max-width: 1200px;">
+        
         <div class="project-card">
             <div class="card-img"><img src="images/porto.png" alt="porto"></div>
             <div class="card-body">
-                <h4>MyPortofolio</h4>
+                <h4>My Portofolio</h4>
                 <p>Website Portofolio pribadi tentang diri saya sendiri dengan desain responsif.</p>
                 <a href="#" class="btn-details">Details <span>&rarr;</span></a>
             </div>
@@ -47,7 +58,7 @@
         <div class="project-card">
             <div class="card-img"><img src="images/navi.png" alt="navigasi"></div>
             <div class="card-body">
-                <h4>Navigasi_Kampus</h4>
+                <h4>Navigasi Kampus</h4>
                 <p>Website untuk membantu Mahasiswa Baru menemukan ruangan dan rute terbaik.</p>
                 <a href="#" class="btn-details">Details <span>&rarr;</span></a>
             </div>
@@ -58,6 +69,33 @@
             <div class="card-body">
                 <h4>ConkHD</h4>
                 <p>Website bertenaga AI untuk membuat foto burik menjadi HD seketika.</p>
+                <a href="#" class="btn-details">Details <span>&rarr;</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="card-img"><img src="images/pixel1.png" alt="PixelCrisp"></div>
+            <div class="card-body">
+                <h4>PixelCrisp</h4>
+                <p>Aplikasi web responsif untuk manipulasi dan pengeditan piksel resolusi tinggi.</p>
+                <a href="#" class="btn-details">Details <span>&rarr;</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="card-img"><img src="images/gear.png" alt="GearMatch AI"></div>
+            <div class="card-body">
+                <h4>GearMatch AI Recommender</h4>
+                <p>Sistem rekomendasi pintar berbasis Machine Learning menggunakan Python dan Streamlit.</p>
+                <a href="#" class="btn-details">Details <span>&rarr;</span></a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div class="card-img"><img src="images/memory.png" alt="Memoria Game"></div>
+            <div class="card-body">
+                <h4>Memoria - Interactive Card Game</h4>
+                <p>Game arcade interaktif dengan Python dan Pygame berfokus pada OOP dan collision detection.</p>
                 <a href="#" class="btn-details">Details <span>&rarr;</span></a>
             </div>
         </div>
@@ -80,7 +118,7 @@
                     <a href="#" class="btn-live">Live Demo</a>
                     <a href="#" class="btn-git">Github</a>
                 </div>
-                <div class="key-features">
+                <div class="key-features" style="margin-top: 20px;">
                     <h3 style="margin-bottom: 10px;">Key Features</h3>
                     <ul id="modal-features-list" style="padding-left: 20px; opacity: 0.8; line-height: 1.8;"></ul>
                 </div>
@@ -97,5 +135,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
